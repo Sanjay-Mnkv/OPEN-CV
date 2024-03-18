@@ -1,0 +1,41 @@
+import numpy as np
+import math
+import cv2
+#print(cv2._version_)
+
+vcap = cv2.VideoCapture('pgirl.mp4')
+frameRate = vcap.get(5)
+result=vcap.isOpened()
+print(result)
+cars = cv2.CascadeClassifier('face.xml')
+count=1
+while(True):
+	ret, frame = vcap.read()
+	frameId = vcap.get(1)
+	fr=np.zeros((1,1))
+	if frame is not None:
+		gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+		dfaces = cars.detectMultiScale(gray, 1.3, 5)
+		for (x,y,w,h) in dfaces:
+			cv2.rectangle(frame,(x,y),(x+w,y+h),(255,0,0),2)
+			fr=frame[y:y+h,x:x+w]
+			if (frameId % math.floor(frameRate) == 0): # May be Commented if you want many images
+				filename ="frame/frame%d.jpg"%count
+				count=count+1
+				print(fr)
+				if (fr.size!=0):
+					cv2.imwrite(filename, fr)
+			cv2.imshow('frame',frame)
+		if cv2.waitKey(22) & 0xFF == ord('q'):
+			break
+	else:
+		print ("Frame is None")
+		break
+# When everything done, release the capture
+vcap.release()
+
+
+
+cv2.destroyAllWindows()
+
+print("Video stop")
