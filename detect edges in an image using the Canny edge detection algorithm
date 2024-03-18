@@ -1,0 +1,11 @@
+import cv2 as cv
+import numpy as np
+img=cv.imread('face.jpg')
+
+#cv.imshow('img1',img)
+edges=cv.Canny(img,0,200)
+#edges2=cv.Canny(img,100,200)
+#pic=np.hstack((img,edges,edges2))
+#cv.imshow('img2',pic)
+cv.imshow('img1',edges)
+cv.waitKey(0)
