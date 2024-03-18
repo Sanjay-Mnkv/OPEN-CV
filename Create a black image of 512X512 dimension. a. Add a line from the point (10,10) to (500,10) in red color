@@ -1,7 +1,1 @@
-#!/bin/python3
-import numpy as np
-import cv2
-img=np.zeros((512,512,3),dtype=np.uint8)
-img[150:300,150:300,1]=255
-cv2.imshow('Green Region',img)
-cv2.waitKey(0)
+
