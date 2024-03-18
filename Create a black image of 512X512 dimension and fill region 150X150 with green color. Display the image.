@@ -1,12 +1,1 @@
-#!/bin/python3
-import numpy as np
-import cv2 as cv
-img=cv.imread('apple.jpg')
-rows,cols,c=img.shape
-print(rows)
-print(cols)
-M=np.float32([[1,0,200],[0,1,100]])
-print(M)
-dst=cv.warpAffine(img,M,(cols,rows))
-cv.imshow('img',dst)
-cv.waitKey(0)
+
