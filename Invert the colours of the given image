@@ -1,0 +1,9 @@
+import pandas as pd
+import cv2
+iimg=cv2.imread('messi.jpg')
+if iimg is not None:
+    nimg=cv2.bitwise_not(iimg)
+    cv2.imwrite('output image.jpg',nimg)
+    print('image processing complete.output image saved as "output image.jpg".')
+else:
+    print('Error:unable to load the input image.')
